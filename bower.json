@@ -12,15 +12,15 @@
   "main": "protein-overview.html",
   "repository": {
     "type": "git",
-    "url": "git://github.com/calipho-sib/nextprot-webcomponents.git#protein-overview"
+    "url": "git://github.com/calipho-sib-webcomponents/protein-overview"
   },
-  "homepage": "https://github.com/calipho-sib/nextprot-webcomponents/tree/protein-overview",
+  "homepage": "https://github.com/calipho-sib-webcomponents/protein-overview",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
     "iron-collapse": "PolymerElements/iron-collapse#^1.2.1",
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
-    "shared-styles": "git://github.com/calipho-sib/nextprot-webcomponents.git#shared-styles",
-    "nextprot-js": "nextprot#^0.0.88",
+    "shared-styles": "git://github.com/calipho-sib-webcomponents/shared-styles.git#develop",
+    "nextprot-js": "nextprot#^X.X.X",
     "bootstrap": "^3.3.7"
   },
   "devDependencies": {
