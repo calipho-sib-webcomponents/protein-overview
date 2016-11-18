@@ -360,6 +360,10 @@ Top page section present on every viewer
       is: 'protein-overview',
       behaviors: [Polymer.NeonAnimationRunnerBehavior],
       properties: {
+        nxConfig: {
+          type: Object,
+          value: {}
+        },
         extended: {
           type: Boolean,
           value: false
@@ -426,17 +430,17 @@ Top page section present on every viewer
       },
       attached: function(){
         var nx = new Nextprot.Client("neXtprot overview loader", "Calipho Group");
-        this.nxEntryName = nx.getEntryName();
         this.nxUrl = nx.getNeXtProtUrl();
+        //this.nxEntry = nx.getEntryName();
         var self=this;
-        nx.getProteinOverview().then(function (data) {
-          self._loadData(data, this.nxEntryName, this.nxUrl);
+        nx.getProteinOverview(this.nxConfig.entry).then(function (data) {
+          self._loadData(data, self.nxConfig.entry, self.nxUrl);
         }, function(error){
           var responseText = JSON.parse(error.responseText);
           self.$.proteinTitle.innerHTML = "<h3>"+responseText.message+"</h3>";
         });
       },
-      _loadData: function(overview, nxEntryName, nxUrl){
+      _loadData: function(overview, nxUrl){
         var EC = [];
         var short = [];
         if (overview.recommendedProteinName.synonyms) {
@@ -494,7 +498,7 @@ Top page section present on every viewer
           "version": overview.history.uniprotVersion,
           "seqVersion": overview.history.sequenceVersion,
           "lastSeqUpdate": overview.history.lastSequenceUpdate,
-          "accessionNumber": this.nxEntryName
+          "accessionNumber": this.nxConfig.entry
         };
       },
       toggle: function(){
