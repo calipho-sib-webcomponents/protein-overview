@@ -431,19 +431,18 @@ Top page section present on every viewer
           }
         }
       },
-      attached: function(){
+      ready: function(){
         var nx = new Nextprot.Client("neXtprot overview loader", "Calipho Group");
         this.nxUrl = nx.getNeXtProtUrl();
-        //this.nxEntry = nx.getEntryName();
         var self=this;
         nx.getProteinOverview(this.nxConfig.entry).then(function (data) {
-          self._loadData(data, self.nxConfig.entry, self.nxUrl);
+          self._loadData(data);
         }, function(error){
           var responseText = JSON.parse(error.responseText);
           self.$.proteinTitle.innerHTML = "<h3>"+responseText.message+"</h3>";
         });
       },
-      _loadData: function(overview, nxUrl){
+      _loadData: function(overview){
         var EC = [];
         var short = [];
         if (overview.recommendedProteinName.synonyms) {
