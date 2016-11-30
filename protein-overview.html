@@ -433,7 +433,7 @@ Top page section present on every viewer
       },
       ready: function(){
         var nx = new Nextprot.Client("neXtprot overview loader", "Calipho Group");
-        this.nxUrl = nx.getNeXtProtUrl();
+        this.nxUrl = this.nxConfig.url || nx.getNeXtProtUrl();
         var self=this;
         nx.getProteinOverview(this.nxConfig.entry).then(function (data) {
           self._loadData(data);
